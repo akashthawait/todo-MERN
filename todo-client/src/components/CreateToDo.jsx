@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import API from '../api/todo';
-import { Redirect } from 'react-router-dom';
 export default class CreateToDo extends Component {
 
     constructor(props) {

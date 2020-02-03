@@ -43,7 +43,7 @@ function addToDo(user_id, task_name) {
     });
 }
 
-function getToDo(user_id, task_name) {
+function getToDo(user_id) {
     return new Promise((resolve, reject) => {
         axios.get(api_url + 'todo', {
             params: { user_id: user_id }
