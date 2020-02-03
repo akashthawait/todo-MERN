@@ -57,12 +57,13 @@ function getToDo(user_id, task_name) {
 
 function logout() {
     localStorage.removeItem("user_id");
-    window.location.reload;
+    window.location.reload();
 }
 let API = {
     login: login,
     signup: signup,
     addToDo: addToDo,
-    getToDo: getToDo
+    getToDo: getToDo,
+    logout: logout
 }
 export default API;
