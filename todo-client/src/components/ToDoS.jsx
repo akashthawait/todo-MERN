@@ -23,9 +23,9 @@ export default class ToDoS extends Component {
             let res = result.data;
             if (res && res.result && res.result.data && res.result.data.todos) {
                 const todos_list = res.result.data.todos;
-                this.setState = {
+                this.setState({
                     todos: todos_list
-                }
+                })
             }
         }).catch(err => {
             console.log(err);
