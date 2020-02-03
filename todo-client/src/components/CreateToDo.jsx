@@ -17,7 +17,6 @@ export default class CreateToDo extends Component {
         const { name, value } = e.target;
         this.setState({ [name]: value });
     };
-
     onSubmitTodo(e) {
         e.preventDefault();
         var todotask = this.state.todotask;
