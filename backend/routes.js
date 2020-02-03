@@ -24,7 +24,8 @@ function establishRoutes(app) {
                     password_hash = Utils.generateHash(password);
                     client.collection('users').insertOne({
                         email: email,
-                        password: password_hash
+                        password: password_hash,
+                        created_at: new Date()
                     }, (err, insert_response) => {
                         if (err) {
                             let res = {
@@ -106,6 +107,38 @@ function establishRoutes(app) {
         })
     });
 
+    app.post('/api/todo', (request, response, next) => {
+        var user_id = request.body.user_id;
+        var todotask = request.body.todo;
+        Utils.getDbClient().then(client => {
+            client.collection('todos').insertOne({
+                user_id: Utils.convertToMongoObjectID(user_id),
+                todo_task: todotask,
+                created_at: new Date()
+            }, (err, insert_response) => {
+                if (err) {
+                    let res = {
+                        status: 0,
+                        message: "Something went wrong"
+                    }
+                    response.json(res)
+                } else {
+                    let res = {
+                        status: 1,
+                        message: "Task added successfully"
+                    }
+                    response.json(res)
+                }
+            });
+        }).catch(err => {
+            console.error(err);
+            let res = {
+                status: 0,
+                message: "Something went wrong"
+            }
+            response.json(res)
+        })
+    });
 
 }
 exports.establishRoutes = establishRoutes;

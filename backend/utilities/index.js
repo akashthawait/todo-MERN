@@ -1,5 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
-
+const ObjectId = require('mongodb').ObjectID;
 function getDbClient() {
     return new Promise((resolve, reject) => {
         let url = "mongodb://todo_user:todo%40123#@ds363088.mlab.com:63088/todo_algo_db"
@@ -13,6 +13,10 @@ function getDbClient() {
             }
         });
     });
+}
+
+function convertToMongoObjectID(string_id) {
+    return new ObjectId(string_id);
 }
 
 function generateHash(text) {
@@ -30,5 +34,6 @@ function compareHashWithString(hash, text) {
 exports.Utils = {
     getDbClient: getDbClient,
     generateHash: generateHash,
-    compareHashWithString: compareHashWithString
+    compareHashWithString: compareHashWithString,
+    convertToMongoObjectID: convertToMongoObjectID
 }
