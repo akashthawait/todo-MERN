@@ -15,7 +15,7 @@ export default class Signup extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.onSignUpClick = this.onSignUpClick.bind(this);
-
+        localStorage.clear();
     }
 
     handleChange(e) {

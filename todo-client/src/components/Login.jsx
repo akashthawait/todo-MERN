@@ -16,6 +16,7 @@ export default class Login extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.onLoginClick = this.onLoginClick.bind(this);
+        localStorage.clear();
     }
 
     handleChange(e) {
