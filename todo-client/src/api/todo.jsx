@@ -57,7 +57,7 @@ function getToDo(user_id, task_name) {
 
 function logout() {
     localStorage.removeItem("user_id");
-    window.location.reload();
+    window.location.replace("/")
 }
 let API = {
     login: login,
