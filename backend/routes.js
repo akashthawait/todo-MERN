@@ -25,7 +25,7 @@ function establishRoutes(app) {
                     client.collection('users').insertOne({
                         email: email,
                         password: password_hash
-                    }).toArray((err, insert_response) => {
+                    }, (err, insert_response) => {
                         if (err) {
                             let res = {
                                 status: 0,
@@ -91,7 +91,7 @@ function establishRoutes(app) {
                 } else {
                     let res = {
                         status: 0,
-                        message: "User already exists"
+                        message: "User doesnot exists"
                     }
                     response.json(res)
                 }
@@ -106,6 +106,6 @@ function establishRoutes(app) {
         })
     });
 
-    
+
 }
 exports.establishRoutes = establishRoutes;

@@ -15,7 +15,7 @@ const App = () => {
             <Route exact path="/" component={Login} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
-            <Route path="/todo" component={ToDoS} />
+            <Route path="/todo/:user_id" component={ToDoS} />
           </div>
         </Router>
       </Router>
