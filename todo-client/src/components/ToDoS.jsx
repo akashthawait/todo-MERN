@@ -13,9 +13,9 @@ export default class ToDoS extends Component {
         this.getTodoList();
     }
 
-    componentDidUpdate() {
-        this.getTodoList();
-    }
+    // componentDidUpdate() {
+    //     this.getTodoList();
+    // }
 
     getTodoList() {
         const user_id = localStorage.getItem('user_id');
@@ -32,7 +32,6 @@ export default class ToDoS extends Component {
         })
     }
     renderToDo() {
-        console.log(this.state);
         if (this.state.todos.length) {
             return this.state.todos.map(function (currentTodo, i) {
                 return (<ToDoItems todo={currentTodo} key={i} />);
