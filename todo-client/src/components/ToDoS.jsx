@@ -25,7 +25,7 @@ export default class ToDoS extends Component {
                 const todos_list = res.result.data.todos;
                 this.setState({
                     todos: todos_list
-                })
+                });
             }
         }).catch(err => {
             console.log(err);
@@ -38,7 +38,7 @@ export default class ToDoS extends Component {
                 return (<ToDoItems todo={currentTodo} key={i} />);
             });
         } else {
-            return (<div>No Tasks</div>)
+            return (<div className="card bg-light text-center todo-add">No Tasks</div>)
         }
     }
 

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 export default class ToDoItems extends Component {
-
+    constructor(props) {
+        super(props);
+        
+    }
     render() {
-        console.log(this.props);
         return (
             <div className="mt-2 todo-add">
                 <h3 className="text-dark text-center bg-light">

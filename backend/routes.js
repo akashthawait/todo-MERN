@@ -184,5 +184,47 @@ function establishRoutes(app) {
         })
     });
 
+    app.delete('/api/todo', (request, response, next) => {
+        let todo_id = request.query.todo_id;
+        Utils.getDbClient().then(client => {
+            client.collection('todos').deleteOne({
+                _id: Utils.convertToMongoObjectID(todo_id)
+            }, (err, obj) => {
+                if (err) {
+                    console.error(err);
+                    let res = {
+                        status: 0,
+                        message: "Something went wrong"
+                    }
+                    response.json(res)
+                }
+                if (obj.result.n) {
+                    let res = {
+                        status: 1,
+                        result: {
+                            data: {
+                                todos: obj.result.n,
+                            }
+                        },
+                        message: "Todo list deleted"
+                    }
+                    response.json(res)
+                } else {
+                    let res = {
+                        status: 0,
+                        message: "No tasks exists"
+                    }
+                    response.json(res)
+                }
+            });
+        }).catch(err => {
+            console.error(err);
+            let res = {
+                status: 0,
+                message: "Something went wrong"
+            }
+            response.json(res)
+        })
+    });
 }
 exports.establishRoutes = establishRoutes;

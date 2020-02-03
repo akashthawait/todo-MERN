@@ -59,11 +59,24 @@ function logout() {
     localStorage.removeItem("user_id");
     window.location.replace("/")
 }
+
+function removeToDo(todo_id) {
+    return new Promise((resolve, reject) => {
+        axios.delete(api_url + 'todo', {
+            params: { todo_id: todo_id }
+        }).then((response) => {
+            resolve(response);
+        }).catch(err => {
+            reject(err);
+        });
+    });
+}
 let API = {
     login: login,
     signup: signup,
     addToDo: addToDo,
     getToDo: getToDo,
-    logout: logout
+    logout: logout,
+    removeToDo: removeToDo
 }
 export default API;
