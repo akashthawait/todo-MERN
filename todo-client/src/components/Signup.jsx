@@ -1,0 +1,64 @@
+import React, { Component } from 'react'
+
+export default class Signup extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            user_email: "",
+            user_password: "",
+            validation: false
+        }
+
+        this.handleChange = this.handleChange.bind(this);
+        this.onSignUpClick = this.onSignUpClick.bind(this);
+
+    }
+
+    handleChange(e) {
+        const { name, value } = e.target;
+        this.setState({ [name]: value });
+    };
+
+    onSignUpClick(e) {
+        e.preventDefault();
+        var email = this.state.user_email;
+        var password = this.state.user_password;
+
+        if (email && password) {
+            console.log(email, password);
+        } else {
+            if (email && !password) {
+                this.refs.txtPassword.focus();
+                this.setState({
+                    validation: false
+                })
+            } else {
+                this.refs.txtEmail.focus();
+                this.setState({
+                    validation: false
+                })
+            }
+        }
+    }
+
+    render() {
+        return (
+            <div className="todo-add">
+                <form onSubmit={this.onSignUpClick}>
+                    <h1 className="h3 mb-3 font-weight-normal text-center">Register</h1>
+                    <div className="form-group">
+                        <input type="email" ref="txtEmail" className="form-control" placeholder="Enter Email" name="user_email" value={this.state.user_email} onChange={this.handleChange} />
+                    </div>
+                    <div className="form-group">
+                        <input type="password" ref="txtPassword" className="form-control" placeholder="Enter Password" name="user_password" value={this.state.user_password} onChange={this.handleChange} />
+                    </div>
+                    <div className="form-group ">
+                        <button type="submit" className="btn btn-primary">Sign Up</button>
+                    </div>
+                </form>
+            </div>
+        )
+    }
+}
