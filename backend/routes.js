@@ -114,6 +114,7 @@ function establishRoutes(app) {
             client.collection('todos').insertOne({
                 user_id: Utils.convertToMongoObjectID(user_id),
                 todo_task: todotask,
+                is_completed: false,
                 created_at: new Date()
             }, (err, insert_response) => {
                 if (err) {
@@ -126,6 +127,49 @@ function establishRoutes(app) {
                     let res = {
                         status: 1,
                         message: "Task added successfully"
+                    }
+                    response.json(res)
+                }
+            });
+        }).catch(err => {
+            console.error(err);
+            let res = {
+                status: 0,
+                message: "Something went wrong"
+            }
+            response.json(res)
+        })
+    });
+
+    app.get('/api/todo', (request, response, next) => {
+        var user_id = request.query.user_id;
+        Utils.getDbClient().then(client => {
+            client.collection('todos').find({
+                user_id: Utils.convertToMongoObjectID(user_id)
+            }).toArray((err, todos) => {
+                if (err) {
+                    console.error(err);
+                    let res = {
+                        status: 0,
+                        message: "Something went wrong"
+                    }
+                    response.json(res)
+                }
+                if (todos && todos.length) {
+                    let res = {
+                        status: 1,
+                        result: {
+                            data: {
+                                todos: todos,
+                            }
+                        },
+                        message: "Todo list successfully fetched "
+                    }
+                    response.json(res)
+                } else {
+                    let res = {
+                        status: 0,
+                        message: "No tasks exists"
                     }
                     response.json(res)
                 }
