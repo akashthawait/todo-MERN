@@ -1,6 +1,8 @@
 # todo-MERN
 Simple ToDoApp List Using MERN Stack
 
+For now I have created a simple rest API without any authentication, but will later add authentication via middlewares
+
 Clone this App on your local machine
 
 Then go to backend folder and do npm install
