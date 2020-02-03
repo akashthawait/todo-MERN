@@ -9,6 +9,8 @@
   "author": "Akash Thawait",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "bcrypt": "^3.0.7",
+    "express": "^4.17.1",
+    "mongodb": "^3.5.2"
   }
 }
